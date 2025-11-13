@@ -13,8 +13,6 @@
 
 Docker est une plateforme open-source qui permet de créer, déployer et exécuter des applications dans des **conteneurs**. Un conteneur est une unité standardisée de logiciel qui empaquette le code et toutes ses dépendances, permettant à l'application de s'exécuter rapidement et de manière fiable d'un environnement informatique à un autre.
 
-Docker a révolutionné le développement logiciel en simplifiant le déploiement des applications et en assurant la cohérence entre les environnements de développement, de test et de production.
-
 ---
 
 ## Concepts fondamentaux
@@ -154,31 +152,13 @@ Un **Dockerfile** est un fichier texte contenant une série d'instructions pour 
 
 ### 4. Volumes Docker
 
-Les **volumes** sont le mécanisme préféré pour persister les données générées et utilisées par les conteneurs Docker.
-
-#### Pourquoi utiliser des volumes ?
-- Les conteneurs sont éphémères : les données sont perdues à leur suppression
-- Les volumes permettent de persister les données
-- Partage de données entre conteneurs
-- Performance optimale
-
-#### Types de stockage :
-1. **Volumes** (recommandé) : gérés par Docker
-2. **Bind mounts** : montage d'un répertoire hôte
-3. **tmpfs mounts** : stockage en mémoire (Linux)
+Les **volumes** sont le mécanisme préféré pour persister les données générées et utilisées par les conteneurs Docker. Contrairement aux conteneurs qui sont éphémères, les volumes permettent de conserver les données même après la suppression d'un conteneur. Il existe trois types de stockage : les volumes (gérés par Docker, recommandés), les bind mounts (montage d'un répertoire de l'hôte), et les tmpfs mounts (stockage en mémoire sur Linux). Les volumes offrent une performance optimale et facilitent le partage de données entre conteneurs.
 
 ---
 
 ### 5. Réseaux Docker
 
-Les **réseaux Docker** permettent aux conteneurs de communiquer entre eux et avec le monde extérieur.
-
-#### Types de réseaux :
-1. **bridge** (par défaut) : réseau privé interne
-2. **host** : utilise directement le réseau de l'hôte
-3. **none** : aucun réseau
-4. **overlay** : communication multi-hôtes (Swarm)
-5. **macvlan** : attribue une adresse MAC au conteneur
+Les **réseaux Docker** permettent aux conteneurs de communiquer entre eux et avec le monde extérieur. Docker propose plusieurs types de réseaux : bridge (par défaut, réseau privé interne), host (utilise directement le réseau de l'hôte), none (aucun réseau), overlay (pour la communication multi-hôtes avec Swarm), et macvlan (attribue une adresse MAC au conteneur). Les conteneurs connectés au même réseau peuvent communiquer entre eux en utilisant simplement leurs noms de conteneur.
 
 ---
 
@@ -196,32 +176,13 @@ Les **réseaux Docker** permettent aux conteneurs de communiquer entre eux et av
 
 ### 7. Docker CLI (Command Line Interface)
 
-Le **Docker CLI** est l'interface en ligne de commande qui permet d'interagir avec Docker Engine. C'est l'outil principal pour gérer les conteneurs, images, volumes et réseaux.
-
-#### Caractéristiques :
-- Interface unifiée pour toutes les opérations Docker
-- Communication avec Docker Engine via API REST
-- Disponible sur Windows, macOS et Linux
-- Extensible avec des plugins
+Le **Docker CLI** est l'interface en ligne de commande qui permet d'interagir avec Docker Engine pour gérer les conteneurs, images, volumes et réseaux. Il offre une interface unifiée pour toutes les opérations Docker, communique avec Docker Engine via une API REST, et est disponible sur Windows, macOS et Linux. Le CLI est extensible avec des plugins et suit une structure de commandes simple : `docker [OPTIONS] COMMAND [ARG...]`.
 
 ---
 
 ### 8. Docker Hub
 
-**Docker Hub** est le registre public officiel de Docker, hébergeant des millions d'images de conteneurs prêtes à l'emploi.
-
-#### Fonctionnalités :
-- Images publiques et privées
-- Images officielles vérifiées
-- Automated Builds depuis GitHub/Bitbucket
-- Webhooks et intégrations CI/CD
-
-#### Alternatives :
-- GitHub Container Registry (ghcr.io)
-- Google Container Registry (gcr.io)
-- Amazon ECR
-- Azure Container Registry
-- GitLab Container Registry
+**Docker Hub** est le registre public officiel de Docker où vous pouvez trouver et partager des millions d'images de conteneurs. Il héberge des images officielles vérifiées (nginx, postgres, redis, etc.) et permet aux développeurs de publier leurs propres images publiques ou privées. Docker Hub facilite le partage et la distribution d'applications conteneurisées à travers des fonctionnalités comme les builds automatiques depuis GitHub/Bitbucket et les intégrations CI/CD.
 
 ---
 
