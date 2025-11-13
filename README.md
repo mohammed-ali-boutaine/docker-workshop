@@ -1,0 +1,241 @@
+# Docker Workshop
+
+## Table des matières
+1. [Introduction à Docker](#introduction-à-docker)
+2. [Concepts fondamentaux](#concepts-fondamentaux)
+3. [Avantages de Docker](#avantages-de-docker)
+4. [Cas d'usage](#cas-dusage)
+5. [Composants Docker](#composants-docker)
+
+---
+
+## Introduction à Docker
+
+Docker est une plateforme open-source qui permet de créer, déployer et exécuter des applications dans des **conteneurs**. Un conteneur est une unité standardisée de logiciel qui empaquette le code et toutes ses dépendances, permettant à l'application de s'exécuter rapidement et de manière fiable d'un environnement informatique à un autre.
+
+Docker a révolutionné le développement logiciel en simplifiant le déploiement des applications et en assurant la cohérence entre les environnements de développement, de test et de production.
+
+---
+
+## Concepts fondamentaux
+
+### Qu'est-ce que la conteneurisation ?
+
+La conteneurisation est une méthode de virtualisation légère qui permet d'exécuter plusieurs applications isolées sur un même système d'exploitation hôte. Contrairement aux machines virtuelles, les conteneurs partagent le noyau du système d'exploitation, ce qui les rend plus légers et plus rapides.
+
+### Machine Virtuelle (VM)
+
+Une **Machine Virtuelle (VM)** est une émulation complète d'un système informatique qui fournit les fonctionnalités d'un ordinateur physique. Chaque VM inclut :
+- Un système d'exploitation complet (OS invité)
+- Des applications et leurs dépendances
+- Des ressources virtuelles (CPU, RAM, disque, réseau)
+- Un hyperviseur pour gérer la virtualisation
+
+**Caractéristiques :**
+- Isolation complète au niveau système
+- Chaque VM nécessite son propre OS
+- Démarrage lent (plusieurs minutes)
+- Consommation importante de ressources
+- Utilisées pour isoler des environnements complets
+
+### Docker vs Machines Virtuelles
+
+| Caractéristique | Docker (Conteneurs) | Machines Virtuelles |
+|----------------|---------------------|---------------------|
+| **Taille** | Léger (Mo) | Lourd (Go) |
+| **Démarrage** | Secondes | Minutes |
+| **Isolation** | Niveau processus | Niveau système |
+| **Performance** | Native | Overhead de virtualisation |
+| **Portabilité** | Très élevée | Moyenne |
+
+---
+
+## Avantages de Docker
+
+### 1. **Portabilité**
+- Les conteneurs fonctionnent de manière identique sur n'importe quelle infrastructure (local, cloud, hybride)
+- "Build once, run anywhere" - Construisez une fois, exécutez partout
+
+### 2. **Isolation**
+- Chaque conteneur s'exécute de manière isolée
+- Évite les conflits entre dépendances et versions
+
+### 3. **Légèreté**
+- Les conteneurs partagent le noyau du système d'exploitation
+- Démarrage rapide et utilisation optimale des ressources
+
+### 4. **Scalabilité**
+- Facile à dupliquer et à distribuer
+- Idéal pour les architectures microservices
+
+### 5. **Versioning et réutilisabilité**
+- Les images Docker peuvent être versionnées
+- Partage facile via Docker Hub ou registres privés
+
+### 6. **Environnements cohérents**
+- Élimine le problème "ça marche sur ma machine"
+- Même environnement du développement à la production
+
+### 7. **CI/CD simplifié**
+- Intégration facile dans les pipelines DevOps
+- Tests automatisés dans des environnements reproductibles
+
+---
+
+## Cas d'usage
+
+### 1. **Développement local**
+- Créer des environnements de développement reproductibles
+- Tester avec différentes versions de langages/frameworks
+
+### 2. **Microservices**
+- Déployer et gérer des architectures distribuées
+- Chaque service dans son propre conteneur
+
+### 3. **Intégration et déploiement continus (CI/CD)**
+- Tests automatisés dans des environnements isolés
+- Déploiements rapides et fiables
+
+### 4. **Migration vers le cloud**
+- Faciliter la migration d'applications existantes
+- Portabilité entre différents fournisseurs cloud
+
+### 5. **Isolation d'applications**
+- Exécuter plusieurs versions d'une même application
+- Tester sans impacter l'environnement système
+
+---
+
+## Composants Docker
+
+### 1. Images Docker
+
+Une **image Docker** est un modèle en lecture seule qui contient tout le nécessaire pour exécuter une application :
+- Code source
+- Bibliothèques
+- Dépendances
+- Variables d'environnement
+- Fichiers de configuration
+
+#### Caractéristiques des images :
+- **Immuables** : une fois créées, elles ne changent pas
+- **Composées de couches** : chaque modification crée une nouvelle couche
+- **Partageables** : disponibles sur Docker Hub ou registres privés
+- **Versionnées** : utilisation de tags (ex: `nginx:latest`, `node:18-alpine`)
+
+---
+
+### 2. Conteneurs Docker
+
+Un **conteneur** est une instance exécutable d'une image Docker. C'est l'environnement isolé dans lequel votre application s'exécute.
+
+#### Caractéristiques des conteneurs :
+- **Éphémères** : peuvent être créés, démarrés, arrêtés et supprimés facilement
+- **Isolés** : processus séparés avec leur propre système de fichiers
+- **Légers** : partagent le noyau de l'OS hôte
+- **Multiples** : plusieurs conteneurs peuvent être créés à partir d'une même image
+
+---
+
+### 3. Dockerfile
+
+Un **Dockerfile** est un fichier texte contenant une série d'instructions pour créer automatiquement une image Docker.
+
+#### Instructions principales :
+- **FROM** : définit l'image de base
+- **WORKDIR** : définit le répertoire de travail
+- **COPY** / **ADD** : copie des fichiers dans l'image
+- **RUN** : exécute des commandes lors de la construction
+- **ENV** : définit des variables d'environnement
+- **EXPOSE** : documente les ports exposés
+- **CMD** / **ENTRYPOINT** : commande à exécuter au démarrage du conteneur
+
+---
+
+### 4. Volumes Docker
+
+Les **volumes** sont le mécanisme préféré pour persister les données générées et utilisées par les conteneurs Docker.
+
+#### Pourquoi utiliser des volumes ?
+- Les conteneurs sont éphémères : les données sont perdues à leur suppression
+- Les volumes permettent de persister les données
+- Partage de données entre conteneurs
+- Performance optimale
+
+#### Types de stockage :
+1. **Volumes** (recommandé) : gérés par Docker
+2. **Bind mounts** : montage d'un répertoire hôte
+3. **tmpfs mounts** : stockage en mémoire (Linux)
+
+---
+
+### 5. Réseaux Docker
+
+Les **réseaux Docker** permettent aux conteneurs de communiquer entre eux et avec le monde extérieur.
+
+#### Types de réseaux :
+1. **bridge** (par défaut) : réseau privé interne
+2. **host** : utilise directement le réseau de l'hôte
+3. **none** : aucun réseau
+4. **overlay** : communication multi-hôtes (Swarm)
+5. **macvlan** : attribue une adresse MAC au conteneur
+
+---
+
+### 6. Docker Compose
+
+**Docker Compose** est un outil qui permet de définir et d'exécuter des applications multi-conteneurs avec un fichier YAML.
+
+#### Pourquoi Docker Compose ?
+- Simplification de la gestion d'applications complexes
+- Configuration déclarative (Infrastructure as Code)
+- Environnements reproductibles
+- Orchestration locale
+
+---
+
+### 7. Docker CLI (Command Line Interface)
+
+Le **Docker CLI** est l'interface en ligne de commande qui permet d'interagir avec Docker Engine. C'est l'outil principal pour gérer les conteneurs, images, volumes et réseaux.
+
+#### Caractéristiques :
+- Interface unifiée pour toutes les opérations Docker
+- Communication avec Docker Engine via API REST
+- Disponible sur Windows, macOS et Linux
+- Extensible avec des plugins
+
+---
+
+### 8. Docker Hub
+
+**Docker Hub** est le registre public officiel de Docker, hébergeant des millions d'images de conteneurs prêtes à l'emploi.
+
+#### Fonctionnalités :
+- Images publiques et privées
+- Images officielles vérifiées
+- Automated Builds depuis GitHub/Bitbucket
+- Webhooks et intégrations CI/CD
+
+#### Alternatives :
+- GitHub Container Registry (ghcr.io)
+- Google Container Registry (gcr.io)
+- Amazon ECR
+- Azure Container Registry
+- GitLab Container Registry
+
+---
+
+## Ressources supplémentaires
+
+- [Documentation officielle Docker](https://docs.docker.com/)
+- [Docker Hub](https://hub.docker.com/)
+- [Docker Compose Documentation](https://docs.docker.com/compose/)
+- [Best Practices Dockerfile](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+
+---
+
+## Conclusion
+
+Docker est un outil puissant qui simplifie le développement, le déploiement et la gestion d'applications. En maîtrisant les concepts d'**images**, de **conteneurs**, de **Dockerfile**, de **volumes**, de **réseaux** et de **Docker Compose**, vous serez en mesure de créer des environnements reproductibles et scalables pour vos projets.
+
+Bonne pratique avec Docker !
