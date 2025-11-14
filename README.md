@@ -106,7 +106,13 @@ Une **Machine Virtuelle (VM)** est une émulation complète d'un système inform
 
 ## Composants Docker
 
-### 1. Images Docker
+### 1. Docker Daemon
+
+Le **Docker daemon** (ou **dockerd**) est le processus d'arrière-plan persistant qui gère toutes les opérations Docker sur une machine hôte. Il s'agit du composant serveur de l'architecture Docker, responsable de l'écoute des commandes du client Docker (ligne de commande), de la construction, de l'exécution et de la gestion des objets Docker tels que les conteneurs, les images, les réseaux et les volumes. En bref, lorsque vous tapez une commande Docker, le client l'envoie au Docker daemon, qui exécute ensuite la requête.
+
+---
+
+### 2. Images Docker
 
 Une **image Docker** est un modèle en lecture seule qui contient tout le nécessaire pour exécuter une application :
 - Code source
