@@ -36,7 +36,39 @@ Une **Machine Virtuelle (VM)** est une émulation complète d'un système inform
 - Consommation importante de ressources
 - Utilisées pour isoler des environnements complets
 
+### Namespaces (Espaces de noms)
+
+Les **namespaces** sont une fonctionnalité du noyau Linux qui fournit l'isolation nécessaire pour créer des conteneurs. Chaque namespace isole un aspect spécifique du système, permettant à un processus d'avoir sa propre vue des ressources système.
+
+#### Types de namespaces et leurs rôles :
+
+1. **PID (Process ID)** : Isole les identifiants de processus
+   - Chaque conteneur a sa propre numérotation de processus
+   - Le processus principal du conteneur voit son PID comme 1
+
+2. **NET (Network)** : Isole les interfaces réseau
+   - Chaque conteneur possède sa propre interface réseau, adresse IP et ports
+   - Permet à plusieurs conteneurs d'utiliser le même port
+
+3. **MNT (Mount)** : Isole les points de montage du système de fichiers
+   - Chaque conteneur a sa propre arborescence de fichiers
+   - Modifications isolées sans affecter l'hôte
+
+4. **UTS (Unix Timesharing System)** : Isole le hostname et le nom de domaine
+   - Chaque conteneur peut avoir son propre nom d'hôte
+   - Utile pour identifier les conteneurs
+
+5. **IPC (Inter-Process Communication)** : Isole la communication inter-processus
+   - Sépare les files de messages, sémaphores et mémoire partagée
+   - Les processus d'un conteneur ne peuvent pas communiquer avec ceux d'un autre
+
+6. **USER** : Isole les identifiants utilisateurs et groupes
+   - Permet de mapper les utilisateurs du conteneur aux utilisateurs de l'hôte
+   - Renforce la sécurité en limitant les privilèges
+
 ### Docker vs Machines Virtuelles
+
+![Architecture VM vs Docker](./public/infra.ppm)
 
 | Caractéristique | Docker (Conteneurs) | Machines Virtuelles |
 |----------------|---------------------|---------------------|
