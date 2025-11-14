@@ -1,1 +1,4 @@
-# dependency
+fastapi
+uvicorn
+psycopg2-binary
+pandas
