@@ -1,15 +1,4 @@
-# 🐳 The Ultimate Docker Workflow Cheatsheet (Code Block Version)
-
-## 1. 💡 Core Concepts & Definitions
-
-* **Image:** The Blueprint (Static file system snapshot). Built using `docker build`.
-* **Container:** The Running Instance (The live application). Started using `docker run`.
-* **Detached Mode:** Runs the Container in the **Background**. Flag: `-d`.
-* **Volume (-v):** **Persistent Storage** for data safety and local code synchronization.
-
-## 2. 📝 Dockerfile Instructions (Build Commands)
-
-These define the Image's structure and dependencies.
+### Docker Commandes
 
 ```bash
 # --- IMAGE MANAGEMENT ---
