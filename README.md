@@ -68,7 +68,7 @@ Les **namespaces** sont une fonctionnalité du noyau Linux qui fournit l'isolati
 
 ### Docker vs Machines Virtuelles
 
-![Architecture VM vs Docker](./public/infra.ppm)
+![Architecture VM vs Docker](./public/demo.png)
 
 | Caractéristique | Docker (Conteneurs) | Machines Virtuelles |
 |----------------|---------------------|---------------------|
